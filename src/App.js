@@ -17,6 +17,7 @@ import { filterGender } from "./Data/filterGender";
 function App() {
   const [data, setData] = useState([]);
   const [filterData, setFilterData] = useState(data);
+  const [newData,setNewData] = useState(data)
   const [gender, setGender] = useState("");
   const [department, setDepartment] = useState("");
   const [city, setCity] = useState("");
@@ -29,38 +30,16 @@ function App() {
 
   useEffect(() => {
     setFilterData(data);
+    setNewData(data)
   }, [data]);
 
-  // useEffect(() => {
-
-  //   let curData = data;
-  //   let arr = curData;
-
-  //   if (gender) {
-
-  //     arr = curData.filter((item) => item.gender === gender);
-  //   }
-  //   curData = arr;
-  //   console.log(arr);
-  //   if (department) {
-  //     arr = curData.filter((item) => item.company.department === department);
-  //   }
-  //   curData = arr;
-  //   if(city){
-  //     arr=curData.filter(
-  //       (item) => item.address.city === city
-  //     );
-  //   }
-  //   curData=arr;
-  //   console.log(curData);
-  //   setFilterData(curData);
-  // }, [gender, department, city]);
-
   useEffect(() => {
+
+    const arr = newData
     if (gender === "All") {
       setFilterData(data);
     } else {
-      let tempdata = filterData.filter((item) => item.gender == gender);
+      let tempdata = arr.filter((item) => item.gender == gender);
       setFilterData(tempdata);
       console.log(gender);
     }
@@ -69,10 +48,11 @@ function App() {
  
 
   useEffect(() => {
+    const arr = newData
     if (department === "All") {
       setFilterData(data);
     } else {
-      let tempdata = filterData.filter(
+      let tempdata = arr.filter(
         (item) => item.company.department == department
       );
       setFilterData(tempdata);
@@ -80,10 +60,11 @@ function App() {
   }, [department]);
 
   useEffect(() => {
+    const arr = newData
     if (city === "All") {
       setFilterData(data);
     } else {
-      let tempdata = filterData.filter((item) => item.address.city == city);
+      let tempdata = arr.filter((item) => item.address.city == city);
       setFilterData(tempdata);
       console.log(gender);
     }
