@@ -1,0 +1,1 @@
+export const filterGender = ["All", "male", "female"];
